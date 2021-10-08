@@ -25,15 +25,15 @@ def leechSet(update, context):
         or user_id not in AS_MEDIA_USERS
         and AS_DOCUMENT
     ):
-        msg += "<b>DOCUMENT</b>"
+        msg += "<b>#DOCUMENT FILE</b>"
     else:
-        msg += "<b>MEDIA</b>"
+        msg += "<b>#STREAMING FILE</b>"
     msg += "\n\n<b>🖼️ Custom Thumbnail</b> "
     msg += "exists" if os.path.exists(path) else "not exists"
     buttons = button_build.ButtonMaker()
-    buttons.sbutton("As Document", f"doc {user_id}")
-    buttons.sbutton("As Media", f"med {user_id}")
-    buttons.sbutton("Delete Thumbnail", f"thumb {user_id}")
+    buttons.sbutton("📁 Document File", f"doc {user_id}")
+    buttons.sbutton("Streaming File 🖥️", f"med {user_id}")
+    buttons.sbutton("🖼️ Delete Thumbnail 🗑️", f"thumb {user_id}")
     if AUTO_DELETE_MESSAGE_DURATION == -1:
         buttons.sbutton("Close", f"closeset {user_id}")
     button = InlineKeyboardMarkup(buttons.build_menu(2))
