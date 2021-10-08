@@ -16,7 +16,7 @@ def cancel_mirror(update, context):
         gid = args[1]
         dl = getDownloadByGid(gid)
         if not dl:
-            sendMessage(f"GID: <code>{gid}</code> Not Found.", context.bot, update)
+            sendMessage(f"<b>GID : {gid} Not Found 🤒</b>", context.bot, update)
             return
         mirror_message = dl.message
     elif update.message.reply_to_message:
@@ -28,7 +28,7 @@ def cancel_mirror(update, context):
             except:
                 pass
     if len(args) == 1:
-        msg = f"Please reply to the <code>/{BotCommands.MirrorCommand}</code> message which was used to start the download or send <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
+        msg = f"<b>Please Reply to the /{BotCommands.MirrorCommand} Message Which was Used to Start the Download or Send /{BotCommands.CancelMirror} GID to Cancelit!</b>"
         if mirror_message and mirror_message.message_id not in keys:
             if BotCommands.MirrorCommand in mirror_message.text or \
                BotCommands.TarMirrorCommand in mirror_message.text or \
@@ -66,7 +66,7 @@ def cancel_all(update, context):
                 sleep(0.3)
         else:
             break
-    sendMessage(f'{count} Download(s) has been Cancelled!', context.bot, update)
+    sendMessage(f'<b>{count} Download(s) has been Cancelled! 😷</b>', context.bot, update)
 
 
 
