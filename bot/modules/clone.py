@@ -21,20 +21,20 @@ def cloneNode(update, context):
             sendMessage(res, context.bot, update)
             return
         if STOP_DUPLICATE:
-            LOGGER.info('Checking File/Folder if already in Drive...')
+            LOGGER.info('<b>📁 Checking File/Folder if already in Drive...🤒</b>')
             smsg, button = gd.drive_list(name, True, True)
             if smsg:
-                msg3 = "File/Folder is already available in Drive.\nHere are the search results:"
+                msg3 = "<b>📁 File/Folder is already Available in Drive..!! 🤒</b>\n<b>🔎 Here are the Search Results 👇</b>"
                 sendMarkup(msg3, context.bot, update, button)
                 return
         if CLONE_LIMIT is not None:
-            LOGGER.info('Checking File/Folder Size...')
+            LOGGER.info('<b>💽 Checking File/Folder Size...</b>')
             if size > CLONE_LIMIT * 1024**3:
-                msg2 = f'Failed, Clone limit is {CLONE_LIMIT}GB.\nYour File/Folder size is {get_readable_file_size(size)}.'
+                msg2 = f'<b>,🚫 Failed, Clone limit is {CLONE_LIMIT}GB 😷</b>\n<b>Your File/Folder size is {get_readable_file_size(size)} 😱</b>'
                 sendMessage(msg2, context.bot, update)
                 return
         if files <= 10:
-            msg = sendMessage(f"Cloning: <code>{link}</code>", context.bot, update)
+            msg = sendMessage(f"<b>♻️ Cloning... :</b> <code>{link}</code>", context.bot, update)
             result, button = gd.clone(link)
             deleteMessage(context.bot, msg)
         else:
@@ -62,14 +62,14 @@ def cloneNode(update, context):
         else:
             uname = f'<a href="tg://user?id={update.message.from_user.id}">{update.message.from_user.first_name}</a>'
         if uname is not None:
-            cc = f'\n\n<b>cc: </b>{uname}'
+            cc = f'\n\n<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n💫 𝑷𝒐𝒘𝒆𝒓𝒆𝒅 𝑩𝒚 : 𝑾𝒉𝒊𝒕𝑬_𝑫𝒆𝒗𝒊𝑳𝟎𝟗'
             men = f'{uname} '
-        if button in ["cancelled", ""]:
+        if button in ["<b>❌ cancelled</b>", ""]:
             sendMessage(men + result, context.bot, update)
         else:
             sendMarkup(result + cc, context.bot, update, button)
     else:
-        sendMessage('Provide G-Drive Shareable Link to Clone.', context.bot, update)
+        sendMessage('<b>📎 Provide G-Drive Shareable Link to Clone 🤒</b>', context.bot, update)
 
 clone_handler = CommandHandler(BotCommands.CloneCommand, cloneNode, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
 dispatcher.add_handler(clone_handler)
