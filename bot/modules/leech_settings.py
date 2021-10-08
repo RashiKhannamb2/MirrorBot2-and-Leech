@@ -19,16 +19,16 @@ from bot.helper.telegram_helper import button_build
 def leechSet(update, context):
     user_id = update.message.from_user.id
     path = f"Thumbnails/{user_id}.jpg"
-    msg = f"Leech Type for {user_id} user is "
+    msg = f"<b>✅ Leech Type for {user_id} user is</b> "
     if (
         user_id in AS_DOC_USERS
         or user_id not in AS_MEDIA_USERS
         and AS_DOCUMENT
     ):
-        msg += "DOCUMENT"
+        msg += "<b>DOCUMENT</b>"
     else:
-        msg += "MEDIA"
-    msg += "\nCustom Thumbnail "
+        msg += "<b>MEDIA</b>"
+    msg += "\n\n<b>🖼️ Custom Thumbnail</b> "
     msg += "exists" if os.path.exists(path) else "not exists"
     buttons = button_build.ButtonMaker()
     buttons.sbutton("As Document", f"doc {user_id}")
@@ -97,9 +97,9 @@ def setThumb(update, context):
         # img.resize((480, 320))
         img.save(des_dir, "JPEG")
         os.remove(photo_dir)
-        sendMessage(f"Custom thumbnail saved for <code>{user_id}</code> user.", context.bot, update)
+        sendMessage(f"✅ <b>Custom Thumbnail Saved for 👤 {user_id} User 🤗</b>", context.bot, update)
     else:
-        sendMessage("Reply to a photo to save custom thumbnail.", context.bot, update)
+        sendMessage("<b>🖼️ Reply to a Photo to Save Custom Thumbnail 🤒</b>", context.bot, update)
 
 leech_set_handler = CommandHandler(BotCommands.LeechSetCommand, leechSet, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
 set_thumbnail_handler = CommandHandler(BotCommands.SetThumbCommand, setThumb, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
