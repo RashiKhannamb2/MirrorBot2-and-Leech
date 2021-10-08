@@ -206,8 +206,8 @@ class GoogleDriveHelper:
                 if err.resp.get('content-type', '').startswith('application/json'):
                     reason = json.loads(err.content).get('error').get('errors')[0].get('reason')
                     if reason not in [
-                        'userRateLimitExceeded',
-                        'dailyLimitExceeded',
+                        '<b>User Rate Limit Exceeded</b>',
+                        '<b>Daily Limit Exceeded</b>',
                     ]:
                         raise err
                     if USE_SERVICE_ACCOUNTS:
@@ -272,7 +272,7 @@ class GoogleDriveHelper:
                     msg = self.deletefile(link)
                     LOGGER.info(f"{msg}")
                     return
-                LOGGER.info("Uploaded To G-Drive: " + file_name)
+                LOGGER.info("📤 <b>Uploaded To G-Drive :</b> " + file_name)
             except Exception as e:
                 if isinstance(e, RetryError):
                     LOGGER.info(f"Total Attempts: {e.last_attempt.attempt_number}")
@@ -372,7 +372,7 @@ class GoogleDriveHelper:
                 self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
                 durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 if self.is_cancelled:
-                    LOGGER.info("Deleting cloned data from Drive...")
+                    LOGGER.info("🗑️ <b>Deleting cloned data from Drive...</b>")
                     msg = self.deletefile(durl)
                     LOGGER.info(f"{msg}")
                     return "<b>♻️ Your clone has Been Stopped and Cloned data has been Deleted!❌</b>", "cancelled"
