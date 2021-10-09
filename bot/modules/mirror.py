@@ -194,7 +194,7 @@ class MirrorListener(listeners.MirrorListeners):
             uname = f"@{self.message.from_user.username}"
         else:
             uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
-        msg = f"<b>👤 {uname} Your Download Has Been Stopped Due to : {error} 🤓</b>"
+        msg = f"<b>👤 {uname} Your Download Has Been Stopped Due to :</b> {error} 🤓"
         sendMessage(msg, self.bot, self.update)
         if count == 0:
             self.clean()
@@ -216,14 +216,14 @@ class MirrorListener(listeners.MirrorListeners):
             count = len(files)
             if self.message.chat.type == 'private':
                 msg = f'<b>📁 Movie Name : </b><code>{link}</code>\n\n'
-                msg += f'<b>🗂️ Total Files : {count}</b>'
+                msg += f'<b>🗂️ Total Files :</b> {count}'
                 if typ != 0:
                     msg += f'\n<b>Corrupted Files: {typ}</b>'
                 sendMessage(msg, self.bot, self.update)
             else:
                 chat_id = str(self.message.chat.id)[4:]
                 msg = f"<b>📁 Movie Name : </b><a href='https://t.me/c/{chat_id}/{self.uid}'>{link}</a>\n\n"
-                msg += f'<b>🗂️ Total Files : {count}</b>\n\n'
+                msg += f'<b>🗂️ Total Files :</b> {count}\n'
                 if typ != 0:
                     msg += f'<b>Corrupted Files : {typ}</b>\n\n'
                 msg += f'<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n'
@@ -252,11 +252,11 @@ class MirrorListener(listeners.MirrorListeners):
         with download_dict_lock:
             msg = f'<b>📁 Movie Name : </b><code>{download_dict[self.uid].name()}</code>\n\n<b>💽 Size : {size}</b>'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
-                msg += '\n<b>📦 Type : Folder</b>'
-                msg += f'\n<b>📂 SubFolders : {folders}</b>'
-                msg += f'\n<b>🗂️ Files : {files}</b>'
+                msg += '\n<b>📦 Type :</b> Folder'
+                msg += f'\n<b>📂 SubFolders :</b> {folders}'
+                msg += f'\n<b>🗂️ Files :</b> {files}'
             else:
-                msg += f'\n<b>📦 Type : {typ}</b>'
+                msg += f'\n<b>📦 Type :</b> {typ}'
             buttons = button_build.ButtonMaker()
             if SHORTENER is not None and SHORTENER_API is not None:
                 surl = short_url(link)
@@ -428,7 +428,7 @@ def _mirror(bot, update, isTar=False, extract=False, isZip=False, isQbit=False, 
 
     if bot_utils.is_gdrive_link(link):
         if not isTar and not extract and not isLeech:
-            sendMessage(f"<b>📁 Use /{BotCommands.CloneCommand} to Clone Google Drive File/Folder</b>\n<b>📁 Use /{BotCommands.TarMirrorCommand} to Make Tar Of Google Drive Folder</b>\n<b>📁 Use /{BotCommands.UnzipMirrorCommand} to Extracts Archive Google Drive file</b>", bot, update)
+            sendMessage(f"<b>📁 Use</b> /{BotCommands.CloneCommand} <b>to Clone Google Drive File/Folder</b>\n<b>📁 Use</b> /{BotCommands.TarMirrorCommand} <b>to Make Tar Of Google Drive Folder</b>\n<b>📁 Use</b> /{BotCommands.UnzipMirrorCommand} <b>to Extracts Archive Google Drive file</b>", bot, update)
             return
         res, size, name, files = gdriveTools.GoogleDriveHelper().helper(link)
         if res != "":
