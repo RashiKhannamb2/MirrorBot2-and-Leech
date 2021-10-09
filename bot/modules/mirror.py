@@ -223,7 +223,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 chat_id = str(self.message.chat.id)[4:]
                 msg = f"<b>📁 Movie Name : </b><a href='https://t.me/c/{chat_id}/{self.uid}'>{link}</a>\n\n"
-                msg += f'<b>🗂️ Total Files : {count}</b>\n'
+                msg += f'<b>🗂️ Total Files : {count}</b>\n\n'
                 if typ != 0:
                     msg += f'<b>Corrupted Files : {typ}</b>\n\n'
                 msg += f'<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n'
