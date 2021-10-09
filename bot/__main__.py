@@ -31,32 +31,32 @@ def stats(update, context):
     cpuUsage = psutil.cpu_percent(interval=0.5)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
-    stats = f'<b>Bot Uptime:</b> <code>{currentTime}</code>\n' \
-            f'<b>Total Disk Space:</b> <code>{total}</code>\n' \
-            f'<b>Used:</b> <code>{used}</code> ' \
-            f'<b>Free:</b> <code>{free}</code>\n\n' \
-            f'<b>Upload:</b> <code>{sent}</code>\n' \
-            f'<b>Download:</b> <code>{recv}</code>\n\n' \
-            f'<b>CPU:</b> <code>{cpuUsage}%</code> ' \
-            f'<b>RAM:</b> <code>{memory}%</code> ' \
-            f'<b>DISK:</b> <code>{disk}%</code>'
+    stats = f'<b>⌚ Bot Uptime :</b> <code>{currentTime}</code>\n' \
+            f'<b>📫 Total Disk Space:</b> <code>{total}</code>\n' \
+            f'<b>🏷️ Used :</b> <code>{used}</code> ' \
+            f'<b>☢️ Free :</b> <code>{free}</code>\n\n' \
+            f'<b>📤 Upload :</b> <code>{sent}</code>\n' \
+            f'<b>📥 Download :</b> <code>{recv}</code>\n\n' \
+            f'<b>🖥️ CPU :</b> <code>{cpuUsage}%</code> ' \
+            f'<b>💾 RAM :</b> <code>{memory}%</code> ' \
+            f'<b>📀 DISK :</b> <code>{disk}%</code>'
     sendMessage(stats, context.bot, update)
 
 
 def start(update, context):
     buttons = button_build.ButtonMaker()
-    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Channel", "https://t.me/mirrorLeechTelegramBot")
+    buttons.buildbutton("🤖 REPO", "https://t.me/newdvdupdate")
+    buttons.buildbutton("OWNER 👤", "https://t.me/white_devil09")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive!
-Type /{BotCommands.HelpCommand} to get a list of available commands
+🤖 <b>This Bot can Mirror all Your Links to Google Drive!</b>
+Type /{BotCommands.HelpCommand} to Get a List of Available Commands! 🤒</b>
 '''
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
         sendMarkup(
-            'Not a Authorized user',
+            '😎 Oops! Not a Authorized User Please Deploy Your Own MirrorBot 🤒',
             context.bot,
             update,
             reply_markup,
@@ -64,7 +64,7 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
 
 
 def restart(update, context):
-    restart_message = sendMessage("Restarting...", context.bot, update)
+    restart_message = sendMessage("<b>🤖 Bot Restarting, Please Wait..!! 😎</b>", context.bot, update)
     # Save restart message object in order to reply to it after restarting
     with open(".restartmsg", "w") as f:
         f.truncate(0)
@@ -229,11 +229,11 @@ def main():
     if os.path.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("Restarted successfully!", chat_id, msg_id)
+        bot.edit_message_text("✅ Restarted Successfully! 🤒", chat_id, msg_id)
         os.remove(".restartmsg")
     elif OWNER_ID:
         try:
-            text = "<b>Bot Restarted!</b>"
+            text = "<b>Bot Restarted! 🤓</b>"
             bot.sendMessage(chat_id=OWNER_ID, text=text, parse_mode=ParseMode.HTML)
             if AUTHORIZED_CHATS:
                 for i in AUTHORIZED_CHATS:
