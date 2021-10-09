@@ -34,7 +34,7 @@ class TgUploader:
         self.message_id = listener.uid
         self.user_id = listener.message.from_user.id
         self.as_doc = AS_DOCUMENT
-        self.thumb = f"Thumbnails/{self.user_id}.jpg"
+        self.thumb = f"<b>🖼️ Thumbnails/{self.user_id}.jpg</b>"
         self.sent_msg = self.__app.get_messages(self.chat_id, self.message_id)
 
     def upload(self):
@@ -57,11 +57,11 @@ class TgUploader:
                 msgs_dict[filee] = self.sent_msg.message_id
                 self.last_uploaded = 0
                 time.sleep(1)
-        LOGGER.info(f"Leech Done: {self.name}")
+        LOGGER.info(f"<b>👍 Leech Done! : {self.name}</b>")
         self.__listener.onUploadComplete(self.name, None, msgs_dict, None, corrupted)
 
     def upload_file(self, up_path, filee, dirpath):
-        cap_mono = f"<code>{filee}</code>"
+        cap_mono = f"<b>{filee}</b>"
         notMedia = False
         thumb = self.thumb
         try:
@@ -156,5 +156,5 @@ class TgUploader:
 
     def cancel_download(self):
         self.is_cancelled = True
-        LOGGER.info(f"Cancelling Upload: {self.name}")
-        self.__listener.onUploadError('your upload has been stopped!')
+        LOGGER.info(f"<b>❌ Cancelling Upload : {self.name} 😡</b>")
+        self.__listener.onUploadError('<b>🚸 Your Upload Has Been Stopped! 🤒</b>')
