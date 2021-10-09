@@ -376,10 +376,10 @@ class GoogleDriveHelper:
                     msg = self.deletefile(durl)
                     LOGGER.info(f"{msg}")
                     return "<b>♻️ Your clone has Been Stopped and Cloned data has been Deleted!❌</b>", "cancelled"
-                msg += f'<b>📁 Movie Name : </b><code>{meta.get("name")}</code>\n\n<b>💽 Size: {get_readable_file_size(self.transferred_size)}</b>'
-                msg += '\n<b>📦 Type : Folder</b>'
-                msg += f'\n<b>📂 SubFolders : {self.total_folders}</b>'
-                msg += f'\n<b>🗂️ Files : {self.total_files}</b>'
+                msg += f'<b>📁 Movie Name : </b><code>{meta.get("name")}</code>\n\n<b>💽 Size:</b> {get_readable_file_size(self.transferred_size)}'
+                msg += '\n<b>📦 Type :</b> Folder'
+                msg += f'\n<b>📂 SubFolders :</b> {self.total_folders}'
+                msg += f'\n<b>🗂️ Files :</b> {self.total_files}'
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
                     surl = short_url(durl)
@@ -409,8 +409,8 @@ class GoogleDriveHelper:
                 except:
                     typ = 'File'
                 try:
-                    msg += f'\n\n<b>💽 Size : {get_readable_file_size(int(meta.get("size")))}</b>'
-                    msg += f'\n<b>📦 Type : {typ}</b>'
+                    msg += f'\n\n<b>💽 Size :</b> {get_readable_file_size(int(meta.get("size")))}'
+                    msg += f'\n<b>📦 Type :</b> {typ}'
                 except TypeError:
                     pass
                 if INDEX_URL is not None:
@@ -783,7 +783,7 @@ class GoogleDriveHelper:
         if self.num_of_path > 1:
             self.edit_telegraph()
 
-        msg = f"<b>🗂️ Found {all_contents_count} Results For : {fileName} 👇</b>"
+        msg = f"<b>🗂️ Found</b> {all_contents_count} <b>Results For :</b> {fileName} 👇"
         buttons = button_build.ButtonMaker()
         buttons.buildbutton("🔎 VIEW YOUR RESULTS 🔍", f"https://telegra.ph/{self.path[0]}")
 
@@ -805,10 +805,10 @@ class GoogleDriveHelper:
             if drive_file['mimeType'] == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.gDrive_directory(**drive_file)
                 msg += f'<b>📁 Movie Name : </b><code>{name}</code>'
-                msg += f'\n\n<b>💽 Size : {get_readable_file_size(self.total_bytes)}</b>'
-                msg += '\n<b>📦 Type : Folder</b>'
-                msg += f'\n<b>📂 SubFolders : {self.total_folders}</b>'
-                msg += f'\n<b>🗂️ Files : {self.total_files}</b>'
+                msg += f'\n\n<b>💽 Size :</b> {get_readable_file_size(self.total_bytes)}'
+                msg += '\n<b>📦 Type :</b> Folder'
+                msg += f'\n<b>📂 SubFolders :</b> {self.total_folders}'
+                msg += f'\n<b>🗂️ Files :</b> {self.total_files}'
             else:
                 msg += f'<b>📁 Movie Name : </b><code>{name}</code>'
                 try:
@@ -818,9 +818,9 @@ class GoogleDriveHelper:
                 try:
                     self.total_files += 1
                     self.gDrive_file(**drive_file)
-                    msg += f'\n\n<b>💽 Size : {get_readable_file_size(self.total_bytes)}</b>'
-                    msg += f'\n<b>📦 Type : {typee}</b>'
-                    msg += f'\n<b>🗂️ Files : {self.total_files}</b>'
+                    msg += f'\n\n<b>💽 Size :</b> {get_readable_file_size(self.total_bytes)}'
+                    msg += f'\n<b>📦 Type :</b> {typee}'
+                    msg += f'\n<b>🗂️ Files :</b> {self.total_files}'
                 except TypeError:
                     pass
         except Exception as err:
