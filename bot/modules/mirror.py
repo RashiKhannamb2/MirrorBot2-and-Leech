@@ -225,7 +225,7 @@ class MirrorListener(listeners.MirrorListeners):
                 msg = f"<b>📁 Movie Name : </b><a href='https://t.me/c/{chat_id}/{self.uid}'>{link}</a>\n\n"
                 msg += f'<b>🗂️ Total Files :</b> {count}\n'
                 if typ != 0:
-                    msg += f'<b>Corrupted Files : {typ}</b>\n\n'
+                    msg += f'<b>Corrupted Files :</b> {typ}\n\n'
                 msg += f'<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n'
                 fmsg = ''
                 for index, item in enumerate(list(files), start=1):
