@@ -121,8 +121,8 @@ def get_readable_message():
                 globals()['PAGE_NO'] -= 1
             start = COUNT
         for index, download in enumerate(list(download_dict.values())[start:], start=1):
-            msg += f"<b>📁 Movie Name :</b> <code>{download.name()}</code>"
-            msg += f"\n\n<b>⏳ Status :/b> {download.status()}"
+            msg += f"<b>📁 Movie Name :</b><code>{download.name()}</code>"
+            msg += f"\n\n<b>⏳ Status :</b> <b>{download.status()}</b>"
             if download.status() not in [
                 MirrorStatus.STATUS_ARCHIVING,
                 MirrorStatus.STATUS_EXTRACTING,
@@ -135,8 +135,7 @@ def get_readable_message():
                     msg += f"\n<b>📊 Progress :</b> {get_readable_file_size(download.processed_bytes())} Of {download.size()}"
                 else:
                     msg += f"\n<b>📊 Progress :</b> {get_readable_file_size(download.processed_bytes())} Of {download.size()}"
-                msg += f"\n<b>🚀 Speed :</> {download.speed()}"
-                msg += f"\n<b>⏰ ETA :</b> {download.eta()}"
+                msg += f"\n<b>🚀 Speed :</b> {download.speed()} | <b>⌚ ETA :</b> {download.eta()}"
                 try:
                     msg += f"\n<b>✒️ Seeders :</b> {download.aria_download().num_seeders}" \
                            f" | <b>✏️ Peers :</b> {download.aria_download().connections}"
@@ -148,7 +147,7 @@ def get_readable_message():
                 except:
                     pass
                 msg += f"\n<b>❌ Cancel 👉 :</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-            msg += "\n________________________________\n"
+            msg += "\n_______________________________\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
         if STATUS_LIMIT is not None and dick_no > STATUS_LIMIT:
