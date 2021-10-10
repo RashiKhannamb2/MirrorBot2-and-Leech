@@ -194,7 +194,7 @@ class MirrorListener(listeners.MirrorListeners):
             uname = f"@{self.message.from_user.username}"
         else:
             uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
-        msg = f"<b>👤 {uname} Your Download Has Been Stopped Due to :</b> {error} 🤓"
+        msg = f"👤 {uname} <b>Your Download Has Been Stopped Due to :</b> {error} 🤓"
         sendMessage(msg, self.bot, self.update)
         if count == 0:
             self.clean()
@@ -225,8 +225,8 @@ class MirrorListener(listeners.MirrorListeners):
                 msg = f"<b>📁 Movie Name : </b><a href='https://t.me/c/{chat_id}/{self.uid}'>{link}</a>\n\n"
                 msg += f'<b>🗂️ Total Files :</b> {count}\n'
                 if typ != 0:
-                    msg += f'<b>Corrupted Files :</b> {typ}\n\n'
-                msg += f'<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n'
+                    msg += f'\n<b>Corrupted Files :</b> {typ}'
+                msg += f'<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 :</b> {uname}\n\n'
                 fmsg = ''
                 for index, item in enumerate(list(files), start=1):
                     msg_id = files[item]
@@ -250,7 +250,7 @@ class MirrorListener(listeners.MirrorListeners):
                 update_all_messages()
             return
         with download_dict_lock:
-            msg = f'<b>📁 Movie Name : </b><code>{download_dict[self.uid].name()}</code>\n\n<b>💽 Size : {size}</b>'
+            msg = f'<b>📁 Movie Name : </b><code>{download_dict[self.uid].name()}</code>\n\n<b>💽 Size :</b> {size}'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                 msg += '\n<b>📦 Type :</b> Folder'
                 msg += f'\n<b>📂 SubFolders :</b> {folders}'
@@ -297,7 +297,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\n<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 : {uname}</b>\n\n💫 𝑷𝒐𝒘𝒆𝒓𝒆𝒅 𝑩𝒚 : 𝑾𝒉𝒊𝒕𝑬_𝑫𝒆𝒗𝒊𝑳𝟎𝟗'
+                msg += f'\n\n<b>👤 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐁𝐲 :</b> {uname}\n\n💫 𝑷𝒐𝒘𝒆𝒓𝒆𝒅 𝑩𝒚 : 𝑾𝒉𝒊𝒕𝑬_𝑫𝒆𝒗𝒊𝑳𝟎𝟗'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
